@@ -1,11 +1,11 @@
 import requests
 import json
-def getNews(company):
+def getNews(company,loc):
     url = 'https://eventregistry.org/api/v1/article/getArticles'
     request_body = {
       "action": "getArticles",
       "keyword": company,
-      "keywordLoc": "title",
+      "keywordLoc": loc,
       "categoryUri": ["dmoz/Business/Accounting","dmoz/Business/Business and Society","dmoz/Business/Associations","dmoz/Business/Business Services","dmoz/Business/Cooperatives","dmoz/Business/Financial Services","dmoz/Business/Marketing and Advertising","dmoz/Business/Business News and Media","dmoz/Business/Small Business","dmoz/Business/Wholesale Trade"],
       "categoryOper": "or",
       "sourceLocationUri": [
@@ -28,9 +28,6 @@ def getNews(company):
     }
     response = requests.get(url, request_body)
     data = response.json()
-    with open('output.json','w') as f:
-        json.dump(data,f,indent = 4)
-
     paragraphs = []
 
     looped = data["articles"]["results"]
@@ -49,6 +46,12 @@ def getNews(company):
           "body" : short + "..."
        }
 
-
-
     return dictionary, paragraphs
+
+def getFinalData(company):
+    a,b = getNews(company,"title")
+    if(len(a)<5):
+        print("got "+str(len(a)))
+        a,b=getNews(company,"body")
+        print("got "+str(len(a)))
+    return a,b
