@@ -1,11 +1,11 @@
 import requests
 import json
-def getNews(company):
+def getNews(company, loc):
     url = 'https://eventregistry.org/api/v1/article/getArticles'
     request_body = {
       "action": "getArticles",
       "keyword": company,
-      "keywordLoc": "title",
+      "keywordLoc": loc,
       "categoryUri": ["dmoz/Business/Accounting","dmoz/Business/Business and Society","dmoz/Business/Associations","dmoz/Business/Business Services","dmoz/Business/Cooperatives","dmoz/Business/Financial Services","dmoz/Business/Marketing and Advertising","dmoz/Business/Business News and Media","dmoz/Business/Small Business","dmoz/Business/Wholesale Trade"],
       "categoryOper": "or",
       "sourceLocationUri": [
