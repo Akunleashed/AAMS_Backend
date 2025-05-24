@@ -1,4 +1,5 @@
 import requests
+import json
 def getNews(company):
     url = 'https://eventregistry.org/api/v1/article/getArticles'
     request_body = {
@@ -14,7 +15,7 @@ def getNews(company):
       "articlesPage": 1,
       "articlesCount": 10,
       "articlesSortBy": "date",
-      "articlesArticleBodyLen": 10,
+      "articlesArticleBodyLen": 2000,
       "isDuplicateFiler": "skipDuplicates",
       "lang": "eng",
       "dataType": [
@@ -26,4 +27,28 @@ def getNews(company):
       "apiKey": "db19b4bf-29e5-40cb-b319-4820814ea84c"
     }
     response = requests.get(url, request_body)
-    return (response.json())
+    data = response.json()
+    with open('output.json','w') as f:
+        json.dump(data,f,indent = 4)
+
+    paragraphs = []
+
+    looped = data["articles"]["results"]
+
+    for content in looped:
+      paragraphs.append(content["body"])
+
+
+    dictionary = {}
+
+    for i,content in enumerate(looped):
+       short = content["body"][:200]
+       dictionary[i] = {
+          "title" : content["title"],
+          "link" : content["url"],
+          "body" : short + "..."
+       }
+
+
+
+    return dictionary, paragraphs
