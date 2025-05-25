@@ -1,7 +1,7 @@
 import json
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
-from NewsApi import getFinalData
+from news import getFinalData
 from Sentiment import get_sentiment
 from PriceData import getPriceData
 from Final_analysis import getFinalAnalysis

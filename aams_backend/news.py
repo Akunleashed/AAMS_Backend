@@ -1,7 +1,6 @@
 import requests
 import json
 
-
 API_KEY = "pub_7d72e6bf846d4db5bd3ae5af7ddcfd35"
 
 def getNews(company,Q):
@@ -30,4 +29,4 @@ def getFinalData(company):
         a,b=getNews(company,"qInMeta")
     return a,b
 
-getFinalData("Reliance industries ltd")
+

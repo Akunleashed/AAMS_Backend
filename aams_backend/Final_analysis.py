@@ -8,8 +8,8 @@ def getFinalAnalysis(data):
 Based strictly on the data provided below, do the following:
 
 1. Output your investment recommendation as exactly one of the following: Strong Buy, Buy, Hold, Sell, Strong Sell.
-2. Place your recommendation between the tags: <<RECOMMENDATION>> and <<END>> on a single line by itself.
-3. After the recommendation, write a concise, professional explanation (around 200 words) justifying your decision.
+2. Place your recommendation between the tags: <RECOMMENDATION> and </RECOMMENDATION> on a single line by itself.
+3. After the recommendation, write a concise, professional explanation (around 200 words) justifying your decision between the tags <Explanation> and </Explanation> 
 
 In your explanation:
 - Use specific data points (like valuation ratios, profit margins, or revenue trends) where they clearly support your reasoning.
@@ -22,13 +22,11 @@ Company fundamentals:
 """ + data + """
 ---
 
+While making extra sure that the phrase between the <RECOMMENDATION> and </RECOMMENDATION> are one of the following -Strong Buy/Buy/Hold/Sell/Strong Sell
 Format your answer exactly as follows:
 
-<<RECOMMENDATION>>
-[Strong Buy/Buy/Hold/Sell/Strong Sell]
-<<END>>
-
-[Explanation here, referring to specific data when relevant.]
+<RECOMMENDATION>[Strong Buy/Buy/Hold/Sell/Strong Sell]</RECOMMENDATION>
+<Explanation>[Explanation here, referring to specific data when relevant.]</Explanation>
 """}
         ],
     )
