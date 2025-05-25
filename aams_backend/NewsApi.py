@@ -51,7 +51,5 @@ def getNews(company,loc):
 def getFinalData(company):
     a,b = getNews(company,"title")
     if(len(a)<5):
-        print("got "+str(len(a)))
         a,b=getNews(company,"body")
-        print("got "+str(len(a)))
     return a,b
