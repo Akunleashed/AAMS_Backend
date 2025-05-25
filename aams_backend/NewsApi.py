@@ -1,6 +1,11 @@
 import requests
 import json
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
+API_KEY = os.getenv("API_KEY")
+
 def getNews(company,loc):
     url = 'https://eventregistry.org/api/v1/article/getArticles'
     request_body = {
@@ -25,7 +30,7 @@ def getNews(company,loc):
       ],
       "forceMaxDataTimeWindow": 7,
       "resultType": "articles",
-      "apiKey": os.getenv("API_KEY")
+      "apiKey": API_KEY
     }
     response = requests.get(url, request_body)
     data = response.json()

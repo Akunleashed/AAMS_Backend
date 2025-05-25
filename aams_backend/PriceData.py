@@ -1,11 +1,14 @@
 import requests
 import json
 import os
+from dotenv import load_dotenv
+load_dotenv()
+RAPID_API_KEY = os.getenv("RAPID_API_KEY")
 def getPriceData(company:str):
     url = "https://indian-stock-exchange-api2.p.rapidapi.com/stock"
     querystring = {"name":company}
     headers = {
-        "x-rapidapi-key": os.getenv("RAPID_API_KEY"),
+        "x-rapidapi-key": RAPID_API_KEY,
         "x-rapidapi-host": "indian-stock-exchange-api2.p.rapidapi.com"
     }
     response = requests.get(url, headers=headers, params=querystring)
@@ -59,4 +62,3 @@ def getPriceData(company:str):
     }
 
     return dataToFrontend,dataToBackend
-getPriceData("Reliance")

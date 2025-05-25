@@ -15,6 +15,8 @@ def get_sentiment(news: list[str]) ->int:
         else:
             temp=(50-(50*(i['score'])))
         total+=temp
+    if len(result)==0:
+        return 0
     return total/len(result)
 
 
