@@ -3,32 +3,33 @@ def getFinalAnalysis(data):
     response = ollama.chat(
         model="deepseek-r1:8b",
         messages=[
-            {"role": "user", "content": """
-    You are a financial analyst.
+            {"role": "user", "content": """You are a financial analyst.
 
-    Based only on the data provided below, do the following:
-    1. Output your investment recommendation as exactly one of: Strong Buy, Buy, Hold, Sell, Strong Sell.
-    2. Place your recommendation between the tags: <<RECOMMENDATION>> and <<END>> on a single line by itself.
-    3. After the recommendation, write an explanation of around 200 words justifying your decision, referencing specific numbers from the data.
+Based strictly on the data provided below, do the following:
 
-    If any important data is missing, mention that as a limitation.
+1. Output your investment recommendation as exactly one of the following: Strong Buy, Buy, Hold, Sell, Strong Sell.
+2. Place your recommendation between the tags: <<RECOMMENDATION>> and <<END>> on a single line by itself.
+3. After the recommendation, write a concise, professional explanation (around 200 words) justifying your decision.
 
-    Here is the data:
-    ---
-    Company fundamentals:
-    """ + data+""""
+In your explanation:
+- Use specific data points (like valuation ratios, profit margins, or revenue trends) where they clearly support your reasoning.
+- Do not use vague or generic language — your justification should be grounded in the actual numbers or facts provided.
+- If any important data appears to be missing or insufficient to make a confident decision, mention it as a limitation.
 
+Here is the data:
+---
+Company fundamentals:
+""" + data + """
+---
 
-    Format your answer exactly as follows:
+Format your answer exactly as follows:
 
-    <<RECOMMENDATION>>
-    [Strong Buy/Buy/Hold/Sell/Strong Sell]
-    <<END>>
+<<RECOMMENDATION>>
+[Strong Buy/Buy/Hold/Sell/Strong Sell]
+<<END>>
 
-    [Your 200-word explanation here.]
-
-
-    """}
+[Explanation here, referring to specific data when relevant.]
+"""}
         ],
     )
     return(response["message"]["content"])
