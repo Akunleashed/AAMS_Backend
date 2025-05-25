@@ -1,10 +1,11 @@
 import requests
 import json
+import os
 def getPriceData(company:str):
     url = "https://indian-stock-exchange-api2.p.rapidapi.com/stock"
     querystring = {"name":company}
     headers = {
-        "x-rapidapi-key": "f2e7efde81msh8b0c0390cfcfbb2p19b315jsnea580d852aa4",
+        "x-rapidapi-key": os.getenv("RAPID_API_KEY"),
         "x-rapidapi-host": "indian-stock-exchange-api2.p.rapidapi.com"
     }
     response = requests.get(url, headers=headers, params=querystring)

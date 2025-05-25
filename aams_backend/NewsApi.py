@@ -1,5 +1,6 @@
 import requests
 import json
+import os
 def getNews(company,loc):
     url = 'https://eventregistry.org/api/v1/article/getArticles'
     request_body = {
@@ -24,7 +25,7 @@ def getNews(company,loc):
       ],
       "forceMaxDataTimeWindow": 7,
       "resultType": "articles",
-      "apiKey": "db19b4bf-29e5-40cb-b319-4820814ea84c"
+      "apiKey": os.getenv("API_KEY")
     }
     response = requests.get(url, request_body)
     data = response.json()
